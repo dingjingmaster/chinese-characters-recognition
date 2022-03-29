@@ -19,6 +19,8 @@ int main (int argc, char* argv[])
      * 8. ascii 里显示的标号字符 91([) - 96(`)
      * 9. ascii 里显示的大写字母 97(a) - 122(z)
      * 10. ascii 其它可显示字符 123({) - 126(~)
+     *
+     * uint16_t 就足够了
      */
     const uint16_t* arr[] = {"残", "怖", "惭",
                              "啊", "齄",
@@ -41,10 +43,11 @@ int main (int argc, char* argv[])
         uint8_t bH = code & 0XFF;
 
         printf ("index: %-2d ---> gb2312 hex code: 0X%-08X "
-                "== code: %-6u "
+                "== code: %-12u "
                 "== area: 0X%-08X -- pos: 0X%-08X "
                 "==> character: %-6s\n",
                 i, code, code, bH - 0xA0, bL - 0xA0, arr[i]);
+        //printf ("debug: %-08X - %-08X\n", bH, bL);
     }
 
     return 0;
