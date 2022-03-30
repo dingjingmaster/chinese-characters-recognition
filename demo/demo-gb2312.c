@@ -11,7 +11,7 @@
  */
 bool is_gb2312 (const char* code)
 {
-    int len = strlen (code);
+    unsigned long len = strlen (code);
     if (len != 2 && len != 1) {
         return false;
     }

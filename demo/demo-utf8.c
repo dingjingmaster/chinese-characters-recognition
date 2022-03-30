@@ -9,7 +9,7 @@
 
 bool is_utf8_1 (const char* code)
 {
-    int len = strlen(code);
+    unsigned long len = strlen(code);
     if (len < 1) {
         return false;
     }
@@ -24,7 +24,7 @@ bool is_utf8_1 (const char* code)
 
 bool is_utf8_2 (const char* code)
 {
-    int len = strlen(code);
+    unsigned long len = strlen(code);
     if (len < 2) {
         return false;
     }
@@ -51,7 +51,7 @@ bool is_utf8_3 (const char* code)
      * 0xED        0x80-0x9F   0x80-0xBF
      * 0xEE-0xEF   0x80-0xBF   0x80-0xBF
      */
-    int len = strlen(code);
+    unsigned long len = strlen(code);
     if (len < 3) {
         return false;
     }
@@ -80,7 +80,7 @@ bool is_utf8_4 (const char* code)
      * 0xF1-0xF3   0x80-0xBF   0x80-0xBF   0x80-0xBF
      * 0xF4        0x80-0x8F   0x80-0xBF   0x80-0xBF
      */
-    int len = strlen(code);
+    unsigned long len = strlen(code);
     if (len < 4) {
         return false;
     }
@@ -132,15 +132,15 @@ int main (int argc, char* argv[])
         const char* code = arr[i];
 
         if (is_utf8_1 (code)) {
-            printf ("index: %-2d --> utf8-1 code: '%c'  --  hex code: 0x%-02X <==> dec: %d\n", i, code[0], code[0] & 0xFF, code[0] & 0xFF);
+            printf ("index: %-2d --> utf8-1 code: '%c'  --  hex code: 0x%-2X <==> dec: %d\n", i, code[0], code[0] & 0xFF, code[0] & 0xFF);
             continue;
         } else if (is_utf8_2 (code)) {
-            printf ("index: %-2d --> utf8-2 code: '%s'  --  hex code: 0x%-02X 0x%-02X\n", i, code, code[0] & 0xFF, code[1] & 0xFF);
+            printf ("index: %-2d --> utf8-2 code: '%s'  --  hex code: 0x%-2X 0x%-2X\n", i, code, code[0] & 0xFF, code[1] & 0xFF);
             continue;
         } else if (is_utf8_3 (code)) {
-            printf ("index: %-2d --> utf8-3 code: '%s'  --  hex code: 0x%-02X 0x%-02X 0x%-02X\n", i, code, code[0] & 0xFF, code[1] & 0xFF, code[2] & 0xFF);
+            printf ("index: %-2d --> utf8-3 code: '%s'  --  hex code: 0x%-2X 0x%-2X 0x%-2X\n", i, code, code[0] & 0xFF, code[1] & 0xFF, code[2] & 0xFF);
         } else if (is_utf8_4 (code)) {
-            printf ("index: %-2d --> utf8-4 code: '%s'  --  hex code: 0x%-02X 0x%-02X 0x%-02X 0x%-02X\n", i, code, code[0] & 0xFF, code[1] & 0xFF, code[2] & 0xFF, code[3] & 0xFF);
+            printf ("index: %-2d --> utf8-4 code: '%s'  --  hex code: 0x%-2X 0x%-2X 0x%-2X 0x%-2X\n", i, code, code[0] & 0xFF, code[1] & 0xFF, code[2] & 0xFF, code[3] & 0xFF);
         }
     }
 
